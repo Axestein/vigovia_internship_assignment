@@ -1,10 +1,11 @@
 export interface Activity {
   id: string;
   name: string;
-  description: string;
+  description?: string;
   time: string;
-  price: number;
-  location: string;
+  timeSlot: 'morning' | 'afternoon' | 'evening';
+  price?: number;
+  location?: string;
 }
 
 export interface Transfer {
@@ -13,38 +14,92 @@ export interface Transfer {
   time: string;
   price: number;
   maxPeople: number;
-  notes: string;
+  notes?: string;
 }
 
 export interface Flight {
   id: string;
+  date: Date;
   airline: string;
-  number: string;
-  departureTime: string;
-  arrivalTime: string;
-  price: number;
+  from: string;
+  fromCode: string;
+  to: string;
+  toCode: string;
+}
+
+export interface HotelBooking {
+  id: string;
+  city: string;
+  checkIn: Date;
+  checkOut: Date;
+  nights: number;
+  hotelName: string;
+}
+
+export interface ImportantNote {
+  id: string;
+  point: string;
+  details: string;
+}
+
+export interface Service {
+  id: string;
+  name: string;
+  details: string;
 }
 
 export interface Day {
   id: string;
   date: Date;
   activities: Activity[];
-  transfers: Transfer[];
-  flights: Flight[];
 }
 
-export interface CompanyInfo {
-  name: string;
-  address: string;
-  phone: string;
-  email: string;
-  website: string;
+export interface ActivityItem {
+  id: string;
+  city: string;
+  activity: string;
+  type: string;
+  duration: string;
 }
+
+export interface PaymentPlan {
+  totalAmount: string;
+  tcs: string;
+  installments: {
+    name: string;
+    amount: string;
+    dueDate: string;
+  }[];
+}
+
+export interface VisaDetails {
+  type: string;
+  validity: string;
+  processingDate: string;
+}
+
 
 export interface ItineraryFormData {
-  tripName: string;
+  travelerName: string;
   duration: number;
+  departureFrom: string;
+  destination: string;
   startDate: Date;
+  endDate: Date;
   days: Day[];
-  companyInfo: CompanyInfo;
+  transfers: Transfer[];
+  flights: Flight[];
+  hotelBookings: HotelBooking[];
+  importantNotes: ImportantNote[];
+  services: Service[];
+  termsAndConditions: string[];
+  activityTable: ActivityItem[];
+  paymentPlan: PaymentPlan;
+  visaDetails: VisaDetails;
+  companyInfo: {
+    name: string;
+    address: string;
+    phone: string;
+    email: string;
+  };
 }

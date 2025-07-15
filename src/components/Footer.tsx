@@ -4,7 +4,6 @@ import { Facebook, Instagram, Linkedin, Youtube } from 'lucide-react';
 const Footer = () => {
   return (
     <footer className="bg-white">
-      {/* Top section with tour packages */}
       <div className="border-b border-gray-200 px-6 py-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap gap-4 text-sm text-gray-600">
@@ -30,12 +29,10 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Main footer content */}
       <div className="bg-[#FBF4FF] px-6 py-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
             
-            {/* Our offerings */}
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Our offerings</h3>
               <ul className="space-y-2 text-sm text-gray-600">
@@ -47,7 +44,6 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Popular destinations */}
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Popular destinations</h3>
               <ul className="space-y-2 text-sm text-gray-600">
@@ -59,7 +55,6 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Vigovia Specials */}
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Vigovia Specials</h3>
               <ul className="space-y-2 text-sm text-gray-600">
@@ -70,7 +65,6 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Company */}
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Company</h3>
               <ul className="space-y-2 text-sm text-gray-600">
@@ -82,7 +76,6 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* More & Contact */}
             <div className="space-y-6">
               <div>
                 <h3 className="font-semibold text-gray-900 mb-4">More</h3>
@@ -94,7 +87,6 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* Contact Info */}
               <div>
                 <div className="bg-[#541C9C] text-white px-4 py-2 rounded-full text-sm inline-block mb-3">
                   Need Help? Call us
@@ -114,11 +106,9 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Logo and Payment Section */}
           <div className="mt-12 pt-8 border-t border-gray-200">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
               <div className="mb-6 md:mb-0">
-                {/* Logo placeholder - you can add your logo here */}
 <div className="mb-2">
   <img
     src="/logo.png"
@@ -131,7 +121,6 @@ const Footer = () => {
               <div className="text-right">
                 <div className="text-sm font-semibold text-gray-900 mb-2">Payments</div>
                 <div className="flex gap-2">
-                  {/* Payment method placeholders */}
                   <div className="w-8 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center">💳</div>
                   <div className="w-8 h-6 bg-orange-500 rounded text-white text-xs flex items-center justify-center">💳</div>
                 </div>
@@ -141,7 +130,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom section */}
       <div className="bg-[#321E5D] px-6 py-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
@@ -150,7 +138,6 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center gap-6">
-              {/* Social Media Icons */}
               <div className="flex gap-3">
                 <a href="#" className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
                   <Facebook className="w-4 h-4 text-[#321E5D]" />
@@ -166,7 +153,6 @@ const Footer = () => {
                 </a>
               </div>
               
-              {/* Legal Links */}
               <div className="flex gap-4 text-sm text-white">
                 <a href="#" className="hover:text-gray-300 transition-colors">Privacy policy</a>
                 <a href="#" className="hover:text-gray-300 transition-colors">Legal notice</a>

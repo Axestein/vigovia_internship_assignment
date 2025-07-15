@@ -1,19 +1,15 @@
-import type { ReactNode } from "react";
+import type { ReactNode, ButtonHTMLAttributes } from "react";
 
-type ButtonProps = {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
-  onClick?: () => void;
-  type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "danger";
-  className?: string;
 };
 
 export const Button = ({
   children,
-  onClick,
-  type = "button",
   variant = "primary",
   className = "",
+  ...props
 }: ButtonProps) => {
   const baseClasses = "px-4 py-2 rounded-md font-medium transition-colors";
   const variantClasses = {
@@ -24,8 +20,7 @@ export const Button = ({
 
   return (
     <button
-      type={type}
-      onClick={onClick}
+      {...props}
       className={`${baseClasses} ${variantClasses[variant]} ${className}`}
     >
       {children}

@@ -1,8 +1,9 @@
-import { useFieldArray } from "react-hook-form"; 
-import type { Control } from "react-hook-form"; 
+import type { Control } from "react-hook-form";
+import { useFieldArray } from "react-hook-form";
 import type { ItineraryFormData } from "../types/itinerary";
 import { Button } from "./UI/Button";
 import { Input } from "./UI/Input";
+import { Select } from "./UI/Select";
 
 export const ActivityForm = ({
   dayIndex,
@@ -19,8 +20,9 @@ export const ActivityForm = ({
   const defaultActivity = {
     id: "",
     name: "",
-    description: "",
     time: "",
+    timeSlot: "morning",
+    description: "",
     price: 0,
     location: "",
   };
@@ -39,6 +41,17 @@ export const ActivityForm = ({
               />
             </div>
             <div>
+              <label className="block text-sm font-medium mb-1">Time Slot</label>
+              <Select
+                {...control.register(`days.${dayIndex}.activities.${index}.timeSlot`)}
+                options={[
+                  { value: 'morning', label: 'Morning' },
+                  { value: 'afternoon', label: 'Afternoon' },
+                  { value: 'evening', label: 'Evening' },
+                ]}
+              />
+            </div>
+            <div>
               <label className="block text-sm font-medium mb-1">Time</label>
               <Input
                 type="time"
@@ -49,14 +62,7 @@ export const ActivityForm = ({
               <label className="block text-sm font-medium mb-1">Location</label>
               <Input
                 {...control.register(`days.${dayIndex}.activities.${index}.location`)}
-                placeholder="Mount Everest"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Price ($)</label>
-              <Input
-                type="number"
-                {...control.register(`days.${dayIndex}.activities.${index}.price`)}
+                placeholder="Location"
               />
             </div>
           </div>
@@ -65,7 +71,7 @@ export const ActivityForm = ({
             <textarea
               {...control.register(`days.${dayIndex}.activities.${index}.description`)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              rows={3}
+              rows={2}
             />
           </div>
           <Button

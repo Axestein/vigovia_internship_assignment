@@ -13,7 +13,6 @@ const Header = () => {
       
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <div className="flex items-center">
             <div className="mb-2">
   <img
@@ -24,7 +23,6 @@ const Header = () => {
 </div>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             <div className="relative group">
               <a href="#" className="text-gray-700 hover:text-[#541C9C] transition-colors font-medium">
@@ -63,9 +61,7 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* Right side actions */}
           <div className="flex items-center space-x-4">
-            {/* Search */}
             <div className="relative">
               {isSearchOpen ? (
                 <div className="flex items-center">
@@ -92,7 +88,6 @@ const Header = () => {
               )}
             </div>
 
-            {/* Wishlist */}
             <button className="p-2 text-gray-500 hover:text-[#541C9C] transition-colors relative">
               <Heart className="w-5 h-5" />
               <span className="absolute -top-1 -right-1 bg-[#541C9C] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
@@ -100,7 +95,6 @@ const Header = () => {
               </span>
             </button>
 
-            {/* Cart */}
             <button className="p-2 text-gray-500 hover:text-[#541C9C] transition-colors relative">
               <ShoppingCart className="w-5 h-5" />
               <span className="absolute -top-1 -right-1 bg-[#541C9C] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
@@ -108,7 +102,6 @@ const Header = () => {
               </span>
             </button>
 
-            {/* User Account */}
             <div className="flex items-center space-x-2">
               <button className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-[#541C9C] transition-colors">
                 <User className="w-5 h-5" />
@@ -116,12 +109,10 @@ const Header = () => {
               </button>
             </div>
 
-            {/* CTA Button */}
             <button className="bg-[#541C9C] text-white px-6 py-2 rounded-full hover:bg-[#680099] transition-colors font-medium">
               Book Now
             </button>
 
-            {/* Mobile menu button */}
             <button
               onClick={toggleMenu}
               className="lg:hidden p-2 text-gray-500 hover:text-[#541C9C] transition-colors"
@@ -132,7 +123,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {isMenuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200">
           <div className="px-6 py-4 space-y-4">
@@ -173,7 +163,6 @@ const Header = () => {
         </div>
       )}
 
-      {/* Quick access bar */}
       <div className="bg-gradient-to-r from-[#541C9C] to-[#680099] text-white">
         <div className="max-w-7xl mx-auto px-6 py-3">
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm">

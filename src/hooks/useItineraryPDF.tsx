@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { PDFDownloadLink, PDFViewer, BlobProvider } from '@react-pdf/renderer';
-import { ItineraryPDF } from '../components/ItineraryPdf';
+import { ItineraryPDF } from '../components/ItineraryPDF';
 import type { ItineraryFormData } from '../types/itinerary';
 
 export const useItineraryPDF = () => {
@@ -12,24 +12,27 @@ export const useItineraryPDF = () => {
   const handleGenerate = (data: ItineraryFormData) => {
     setIsGenerating(true);
     try {
-      // Ensure all numeric fields are properly converted
       const processedData: ItineraryFormData = {
         ...data,
+        startDate: new Date(data.startDate),
+        endDate: new Date(data.endDate),
         days: data.days.map(day => ({
           ...day,
+          date: new Date(day.date),
           activities: day.activities.map(activity => ({
             ...activity,
             price: Number(activity.price) || 0,
           })),
-          transfers: day.transfers.map(transfer => ({
-            ...transfer,
-            price: Number(transfer.price) || 0,
-            maxPeople: Number(transfer.maxPeople) || 1,
-          })),
-          flights: day.flights.map(flight => ({
-            ...flight,
-            price: Number(flight.price) || 0,
-          })),
+        })),
+        flights: data.flights.map(flight => ({
+          ...flight,
+          date: new Date(flight.date),
+        })),
+        hotelBookings: data.hotelBookings.map(hotel => ({
+          ...hotel,
+          checkIn: new Date(hotel.checkIn),
+          checkOut: new Date(hotel.checkOut),
+          nights: Math.ceil((new Date(hotel.checkOut).getTime() - new Date(hotel.checkIn).getTime()) / (1000 * 60 * 60 * 24)),
         })),
       };
       setPdfData(processedData);
@@ -46,14 +49,14 @@ export const useItineraryPDF = () => {
     
     return (
       <BlobProvider document={<ItineraryPDF data={pdfData} />}>
-        {({ blob, url, loading }) => {
+        {({ url, loading }) => {
           if (loading) return <div>Loading document...</div>;
           if (!url) return null;
           
           return (
             <a
               href={url}
-              download={`${pdfData.tripName.replace(/\s+/g, '_')}_itinerary.pdf`}
+              download={`${pdfData.destination.replace(/\s+/g, '_')}_itinerary.pdf`}
               className="px-4 py-2 rounded-md font-medium bg-green-600 hover:bg-green-700 text-white transition-colors"
             >
               Download Itinerary

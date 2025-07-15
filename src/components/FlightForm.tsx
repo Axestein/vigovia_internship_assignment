@@ -1,69 +1,71 @@
 import type { Control } from "react-hook-form";
-import { useFieldArray } from "react-hook-form";
+import { useFieldArray} from "react-hook-form";
 import type { ItineraryFormData } from "../types/itinerary";
 import { Button } from "./UI/Button";
 import { Input } from "./UI/Input";
 
-export const FlightForm = ({
-  dayIndex,
-  control,
-}: {
-  dayIndex: number;
-  control: Control<ItineraryFormData>;
-}) => {
+export const FlightForm = ({ control }: { control: Control<ItineraryFormData> }) => {
   const { fields, append, remove } = useFieldArray({
     control,
-    name: `days.${dayIndex}.flights`,
+    name: "flights",
   });
 
   const defaultFlight = {
-    id: "",
+    id: Date.now().toString(),
+    date: new Date(),
     airline: "",
-    number: "",
-    departureTime: "",
-    arrivalTime: "",
-    price: 0,
+    from: "",
+    fromCode: "",
+    to: "",
+    toCode: "",
   };
 
   return (
     <div className="mb-6">
-      <h4 className="text-lg font-semibold mb-2">Flights</h4>
+      <h4 className="text-lg font-semibold mb-2">Flight Details</h4>
       {fields.map((field, index) => (
         <div key={field.id} className="bg-gray-50 p-4 rounded-md mb-3">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
             <div>
+              <label className="block text-sm font-medium mb-1">Date</label>
+              <Input
+                type="date"
+                {...control.register(`flights.${index}.date`, { valueAsDate: true })}
+              />
+            </div>
+            <div>
               <label className="block text-sm font-medium mb-1">Airline</label>
               <Input
-                {...control.register(`days.${dayIndex}.flights.${index}.airline`)}
-                placeholder="Delta, Emirates, etc."
+                {...control.register(`flights.${index}.airline`, { required: true })}
+                placeholder="Air India"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Flight Number</label>
+              <label className="block text-sm font-medium mb-1">From (City)</label>
               <Input
-                {...control.register(`days.${dayIndex}.flights.${index}.number`)}
-                placeholder="DL123"
+                {...control.register(`flights.${index}.from`, { required: true })}
+                placeholder="Delhi"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Departure Time</label>
+              <label className="block text-sm font-medium mb-1">From (Code)</label>
               <Input
-                type="datetime-local"
-                {...control.register(`days.${dayIndex}.flights.${index}.departureTime`)}
+                {...control.register(`flights.${index}.fromCode`, { required: true })}
+                placeholder="DEL"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Arrival Time</label>
+              <label className="block text-sm font-medium mb-1">To (City)</label>
               <Input
-                type="datetime-local"
-                {...control.register(`days.${dayIndex}.flights.${index}.arrivalTime`)}
+                {...control.register(`flights.${index}.to`, { required: true })}
+                placeholder="Singapore"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Price ($)</label>
+              <label className="block text-sm font-medium mb-1">To (Code)</label>
               <Input
-                type="number"
-                {...control.register(`days.${dayIndex}.flights.${index}.price`)}
+                {...control.register(`flights.${index}.toCode`, { required: true })}
+                placeholder="SIN"
               />
             </div>
           </div>
